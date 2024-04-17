@@ -1,6 +1,6 @@
 import { parseISO, formatDistanceToNow } from "date-fns";
 
-export const TimeAgo = ({ timestamp }) => {
+const TimeAgo = ({ timestamp }) => {
   let timeAgo = "";
   if (timestamp) {
     const date = parseISO(timestamp);
@@ -9,3 +9,5 @@ export const TimeAgo = ({ timestamp }) => {
   }
   return <span title={timestamp}>{timeAgo}</span>;
 };
+
+export default TimeAgo;

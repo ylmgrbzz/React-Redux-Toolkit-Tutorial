@@ -29,6 +29,19 @@ const initialState = [
       coffee: 0,
     },
   },
+  {
+    id: "3",
+    title: "Learning Redux Toolkit333",
+    content: "I've heard good things.333",
+    date: sub(new Date(), { minutes: 10 }).toISOString(),
+    reactions: {
+      thumbsUp: 0,
+      wow: 0,
+      heart: 0,
+      rocket: 0,
+      coffee: 0,
+    },
+  },
 ];
 
 const postSlice = createSlice({
