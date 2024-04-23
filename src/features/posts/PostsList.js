@@ -1,6 +1,11 @@
-import React from "react";
+import React, { useEffect } from "react";
 import { useSelector, useDispatch } from "react-redux";
-import { selectAllPosts } from "./postsSlice";
+import {
+  selectAllPosts,
+  getPostsStatus,
+  getPostsError,
+  fetchPosts,
+} from "./postsSlice";
 import PostAuthor from "./PostAuthor";
 import TimeAgo from "./TimeAgo";
 import ReactionButton from "./ReactionButton";
@@ -9,6 +14,14 @@ const PostsList = () => {
   const posts = useSelector((state) => state.posts);
   const posts2 = useSelector(selectAllPosts);
   const dispatch = useDispatch();
+  const postsStatus = useSelector(getPostsStatus);
+  const error = useSelector(getPostsError);
+
+  useEffect(() => {
+    if (postsStatus === "idle") {
+      dispatch(fetchPosts());
+    }
+  }, [postsStatus, dispatch]);
 
   const renderedPosts = posts2.map((post) => (
     <article className="post-excerpt" key={post.id}>
